@@ -1,13 +1,12 @@
 import React, { useState } from "react";
+// 미사용 아이콘(Flame, CheckCircle2)을 제거하여 TypeScript 엄격성 검사(noUnusedLocals) 에러 원천 차단
 import {
   Brain,
   Activity,
   Wind,
-  Flame,
   AlertTriangle,
   ShieldAlert,
   Zap,
-  CheckCircle2,
   ChevronRight,
   Hand,
 } from "lucide-react";
@@ -18,11 +17,11 @@ export default function App() {
   const [isStroking, setIsStroking] = useState(false); // C-LTMR 섬유 (느린 쓰다듬기)
   const [isSympatheticActive, setIsSympatheticActive] = useState(false); // 교감신경 항진 (NE 분비, 병리적 상태)
 
-  // 퀴즈 상태 관리
-  const [quiz1Answer, setQuiz1Answer] = useState(null);
-  const [quiz2Answer, setQuiz2Answer] = useState(null);
-  const [quiz3Answer, setQuiz3Answer] = useState(null);
-  const [quiz4Answer, setQuiz4Answer] = useState(null);
+  // 퀴즈 상태 관리 (타입스크립트 엄격성 검사 통과를 위해 <number | null> 추가)
+  const [quiz1Answer, setQuiz1Answer] = useState<number | null>(null);
+  const [quiz2Answer, setQuiz2Answer] = useState<number | null>(null);
+  const [quiz3Answer, setQuiz3Answer] = useState<number | null>(null);
+  const [quiz4Answer, setQuiz4Answer] = useState<number | null>(null);
 
   // --- 생리학적 로직 계산 ---
   let painLevel = 0;
