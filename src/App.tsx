@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // 미사용 아이콘(Flame, CheckCircle2)을 제거하여 TypeScript 엄격성 검사(noUnusedLocals) 에러 원천 차단
 import {
   Brain,
@@ -12,6 +12,17 @@ import {
 } from "lucide-react";
 
 export default function App() {
+  // --- 디자인 시스템 강제 동기화 (Vercel 레이아웃 깨짐 방지) ---
+  // 외부 클라우드 환경에서도 Tailwind CSS가 무조건 작동하도록 스크립트를 자동 주입합니다.
+  useEffect(() => {
+    if (!document.getElementById("tailwind-cdn")) {
+      const script = document.createElement("script");
+      script.id = "tailwind-cdn";
+      script.src = "https://cdn.tailwindcss.com";
+      document.head.appendChild(script);
+    }
+  }, []);
+
   // --- 상태 관리 ---
   const [isBrushing, setIsBrushing] = useState(false); // Aβ 섬유 (빠른 자극)
   const [isStroking, setIsStroking] = useState(false); // C-LTMR 섬유 (느린 쓰다듬기)
